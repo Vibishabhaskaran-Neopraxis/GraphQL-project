@@ -17,7 +17,6 @@
 
 {{{head.scripts}}}
 <!-- Calling FontAwesome cdn and Jquery cdn -->
-<script src="https://use.fontawesome.com/685ce2e244.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 {{/partial}}
@@ -140,10 +139,9 @@
                 var formField = paymentSection.querySelector('.checkout-terms')
                 var customText = formField?.getElementsByTagName('span')[0];
                 if (customText) {
-                    var termsnodeValue = customText?.firstChild.nodeValue;
-                    var newTermsNodeValue = termsnodeValue.innerHTML = "By completing your purchase you agree to these"
+                    var termsNodeValue = customText.firstChild.nodeValue.innerHTML = "By completing your purchase you agree to these";
                     var termsHref = customText.childNodes[1].href;
-                    var finalTag = newTermsNodeValue + ` <a target="_blank" href=${termsHref}>Terms of Service.</a>`
+                    var finalTag = termsNodeValue + ` <a target="_blank" href=${termsHref}>Terms of Service.</a>`
                     // $(customText).html('By completing your purchase you agree to these <a target="_blank" href="https://www.pearson.com/en-ca/legal-information/terms-of-use.html">Terms of Service.</a>');
                     $(customText).html(finalTag);
                     // $(formField).show()
@@ -166,18 +164,19 @@
             // *************************************************************************
             var redeemableLabel = mutation.target.getElementsByClassName('redeemable-label')
             // console.log("redeemableLabel",redeemableLabel)
-            $(redeemableLabel).html('Promotion code<i class="fa fa-chevron-down fa-1x rotate"  aria-hidden="true"></i>');
-            // $(redeemableLabel).html('Promotion code<svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.37806 6.76161C5.74591 7.09181 6.30973 7.07898 6.66235 6.72314L11.7256 1.61365C12.0915 1.24451 12.0915 0.646004 11.7256 0.276858C11.3598 -0.0922867 10.7667 -0.0922869 10.4009 0.276858L6 4.71795L1.59906 0.276859C1.23325 -0.092286 0.640163 -0.0922861 0.274356 0.276859C-0.091452 0.646004 -0.0914519 1.24451 0.274356 1.61365L5.33765 6.72314C5.35104 6.73665 5.36449 6.7495 5.37806 6.76161Z" fill="black"/></svg>');
+            // $(redeemableLabel).html('Promotion code<i class="fa fa-chevron-down fa-1x rotate"  aria-hidden="true"></i>');
+            $(redeemableLabel).html('Promotion code<svg width="55" viewBox="0 0 12 7" fill="none" class="rotate" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.37806 6.76161C5.74591 7.09181 6.30973 7.07898 6.66235 6.72314L11.7256 1.61365C12.0915 1.24451 12.0915 0.646004 11.7256 0.276858C11.3598 -0.0922867 10.7667 -0.0922869 10.4009 0.276858L6 4.71795L1.59906 0.276859C1.23325 -0.092286 0.640163 -0.0922861 0.274356 0.276859C-0.091452 0.646004 -0.0914519 1.24451 0.274356 1.61365L5.33765 6.72314C5.35104 6.73665 5.36449 6.7495 5.37806 6.76161Z" fill="black"/></svg>');
             $(redeemableLabel).show()
 
             var couponSection = mutation.target.querySelectorAll('[data-test="cart-coupon"]')[0];
             var couponAttribute = couponSection?.getAttribute('data-test');
-            var closeButtton = couponSection?.querySelectorAll('[data-test="cart-price-callback"]')[0];
-            // console.log("couponSection", couponSection)
-            // console.log("couponAttribute", couponAttribute)
+            console.log("couponSection", couponSection)
+            console.log("couponAttribute", couponAttribute)
             if (couponAttribute === "cart-coupon") {
+                var closeButtton = couponSection?.querySelectorAll('.cart-priceItem-link')[0].childNodes[0];
+                console.log("closeButtton", closeButtton)
                 // console.log("couponAttribute , closeButtton", couponAttribute, closeButtton)
-                $(closeButtton).html('<i class="fa fa-close fa-1x removeCouponBtn" aria-hidden="true"></i>');
+                $(closeButtton).html('<svg width="10" height="10" viewBox="0 0 10 10" fill="none" class="removeCouponBtn" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5 3.67193L8.39688 0.275052C8.76362 -0.091684 9.35821 -0.091684 9.72495 0.275052C10.0917 0.641788 10.0917 1.23638 9.72495 1.60312L6.32807 5L9.72495 8.39688C10.0917 8.76362 10.0917 9.35821 9.72495 9.72495C9.35821 10.0917 8.76362 10.0917 8.39688 9.72495L5 6.32807L1.60312 9.72495C1.23638 10.0917 0.641788 10.0917 0.275052 9.72495C-0.091684 9.35821 -0.091684 8.76362 0.275052 8.39688L3.67193 5L0.275052 1.60312C-0.091684 1.23638 -0.091684 0.641788 0.275052 0.275052C0.641788 -0.091684 1.23638 -0.091684 1.60312 0.275052L5 3.67193Z" fill="#999999"/></svg>');
             }
         }
     })
