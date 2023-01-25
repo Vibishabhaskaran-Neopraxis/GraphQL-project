@@ -170,11 +170,11 @@
 
             var couponSection = mutation.target.querySelectorAll('[data-test="cart-coupon"]')[0];
             var couponAttribute = couponSection?.getAttribute('data-test');
-            console.log("couponSection", couponSection)
-            console.log("couponAttribute", couponAttribute)
+            // console.log("couponSection", couponSection)
+            // console.log("couponAttribute", couponAttribute)
             if (couponAttribute === "cart-coupon") {
                 var closeButtton = couponSection?.querySelectorAll('.cart-priceItem-link')[0].childNodes[0];
-                console.log("closeButtton", closeButtton)
+                // console.log("closeButtton", closeButtton)
                 // console.log("couponAttribute , closeButtton", couponAttribute, closeButtton)
                 $(closeButtton).html('<svg width="10" height="10" viewBox="0 0 10 10" fill="none" class="removeCouponBtn" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M5 3.67193L8.39688 0.275052C8.76362 -0.091684 9.35821 -0.091684 9.72495 0.275052C10.0917 0.641788 10.0917 1.23638 9.72495 1.60312L6.32807 5L9.72495 8.39688C10.0917 8.76362 10.0917 9.35821 9.72495 9.72495C9.35821 10.0917 8.76362 10.0917 8.39688 9.72495L5 6.32807L1.60312 9.72495C1.23638 10.0917 0.641788 10.0917 0.275052 9.72495C-0.091684 9.35821 -0.091684 8.76362 0.275052 8.39688L3.67193 5L0.275052 1.60312C-0.091684 1.23638 -0.091684 0.641788 0.275052 0.275052C0.641788 -0.091684 1.23638 -0.091684 1.60312 0.275052L5 3.67193Z" fill="#999999"/></svg>');
             }
