@@ -44,10 +44,10 @@
             if (node?.tagName === "BODY") {
                 // Time to end HtmlObserver
                 HtmlObserver.disconnect()
-                console.log("HtmlObserver STOPPED.....**")
+                // console.log("HtmlObserver STOPPED.....**")
                 // Start BodyObserver :: it will observe the <body>
                 BodyObserver.observe(node, { attributes: true, childList: true, subtree: true })
-                console.log("BodyObserver STARTED.....**")
+                // console.log("BodyObserver STARTED.....**")
             }
         }
     })
@@ -79,12 +79,12 @@
                 // console.log("****layout cart*****",layoutCart)
                 // ***** Start Observe the Billling Section
                 BillingObserver.observe(checkoutApp, { attributes: true, childList: true, subtree: true })
-                console.log("BillingObserver STARTED.....**")
+                // console.log("BillingObserver STARTED.....**")
                 // Start Observethe Cart Section
                 layoutCartObserver.observe(layoutCart, { attributes: true, childList: true, subtree: true })
                 // Disconnect BodyObserver after getting Billing and Cart
                 BodyObserver.disconnect()
-                console.log("BodyObserver STOPPED.....**")
+                // console.log("BodyObserver STOPPED.....**")
             }
         }
     })
@@ -139,9 +139,15 @@
             if (paymentSection) {
                 var formField = paymentSection.querySelector('.checkout-terms')
                 var customText = formField?.getElementsByTagName('span')[0];
-                // console.log("*** Custom Text ***",customText)
-                $(customText).html('By completing your purchase you agree to these <a target="_blank" href="https://www.pearson.com/en-ca/legal-information/terms-of-use.html">Terms of Service.</a>');
-                // $(formField).show()
+                if (customText) {
+                    var termsnodeValue = customText?.firstChild.nodeValue;
+                    var newTermsNodeValue = termsnodeValue.innerHTML = "By completing your purchase you agree to these"
+                    var termsHref = customText.childNodes[1].href;
+                    var finalTag = newTermsNodeValue + ` <a target="_blank" href=${termsHref}>Terms of Service.</a>`
+                    // $(customText).html('By completing your purchase you agree to these <a target="_blank" href="https://www.pearson.com/en-ca/legal-information/terms-of-use.html">Terms of Service.</a>');
+                    $(customText).html(finalTag);
+                    // $(formField).show()
+                }
             }
         }
     })
@@ -216,8 +222,9 @@
     * {
         font-family: Roboto !important;
     }
-/* Style for Order Summery in Mobile screen */
-/* **************************************** */
+
+    /* Style for Order Summery in Mobile screen */
+    /* **************************************** */
     @media only screen and (max-width: 772px) {
 
         .cart-modal-body {
